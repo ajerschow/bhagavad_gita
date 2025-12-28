@@ -1,5 +1,186 @@
 // decide whether should make it into json format (could not hurt)
+// read through 10.21 - 10.38 for among the ... I am 
 const versesData = [
+{
+  "type": "Shloka",
+  "verseIndex": "BG 2.20",
+  "fullTransliteration": "Na jāyate mriyate vā kadācin nāyaṃ bhūtvā bhavitā vā na bhūyaḥ | Ajo nityaḥ śāśvato'yaṃ purāṇo na hanyate hanyamāne śarīre ||",
+  "fullTranslation": "The soul is never born nor dies at any time. It has not come into being, does not come into being, and will not come into being. It is unborn, eternal, ever-existing and primeval. It is not slain when the body is slain.",
+  "words": [
+    {
+      "text": "न",
+      "transliteration": "na",
+      "translation": "Not",
+      "hindi": "नहीं",
+      "etym": "Negative particle.",
+      "note": "-"
+    },
+    {
+      "text": "जायते",
+      "transliteration": "jāyate",
+      "translation": "Is Born",
+      "hindi": "जन्म लेता है",
+      "etym": "Root: jan (to be born). Grammar: Present Indicative (Lat), 3rd Person Singular (Atmanepada).",
+      "note": "Denies birth."
+    },
+    {
+      "text": "म्रियते",
+      "transliteration": "mriyate",
+      "translation": "Dies",
+      "hindi": "मरता है",
+      "etym": "Root: mṛ (to die). Grammar: Present Indicative, 3rd Person Singular.",
+      "note": "Denies death."
+    },
+    {
+      "text": "वा",
+      "transliteration": "vā",
+      "translation": "Or",
+      "hindi": "या",
+      "etym": "Conjunction.",
+      "note": "-"
+    },
+    {
+      "text": "कदाचित्",
+      "transliteration": "kadācit",
+      "translation": "At Any Time",
+      "hindi": "कभी भी",
+      "etym": "kadā (when) + cit (indefinite particle).",
+      "note": "-"
+    },
+    {
+      "text": "|",
+      "transliteration": "|"
+    },
+    {
+      "text": "<br>",
+      "transliteration": "<br>"
+    },
+    {
+      "text": "नायं",
+      "transliteration": "nāyaṃ",
+      "translation": "Not This (Soul)",
+      "hindi": "यह (आत्मा) नहीं",
+      "etym": "Sandhi: na (not) + ayam (this).",
+      "note": "-"
+    },
+    {
+      "text": "भूत्वा",
+      "transliteration": "bhūtvā",
+      "translation": "Having Come into Being",
+      "hindi": "होकर",
+      "etym": "Root: bhū. Grammar: Gerund (Ktva Pratyaya).",
+      "note": "It has no beginning."
+    },
+    {
+      "text": "भविता",
+      "transliteration": "bhavitā",
+      "translation": "Will Be",
+      "hindi": "बनेगा / होगा",
+      "etym": "Root: bhū. Grammar: Periphrastic Future (Lut), 3rd Person Singular.",
+      "note": "-"
+    },
+    {
+      "text": "वा",
+      "transliteration": "vā",
+      "translation": "Or",
+      "hindi": "या",
+      "etym": "-",
+      "note": "-"
+    },
+    {
+      "text": "न",
+      "transliteration": "na",
+      "translation": "Not",
+      "hindi": "नहीं",
+      "etym": "-",
+      "note": "-"
+    },
+    {
+      "text": "भूयः",
+      "transliteration": "bhūyaḥ",
+      "translation": "Again",
+      "hindi": "फिर",
+      "etym": "Adverb.",
+      "note": "-"
+    },
+    {
+      "text": "|",
+      "transliteration": "|"
+    },
+    {
+      "text": "<br>",
+      "transliteration": "<br>"
+    },
+    {
+      "text": "अजो",
+      "transliteration": "ajo",
+      "translation": "Unborn",
+      "hindi": "अजन्मा",
+      "etym": "Sandhi: ajaḥ. a (not) + ja (born).",
+      "note": "-"
+    },
+    {
+      "text": "नित्यः",
+      "transliteration": "nityaḥ",
+      "translation": "Eternal",
+      "hindi": "नित्य (शाश्वत)",
+      "etym": "Adjective.",
+      "note": "Existing at all times."
+    },
+    {
+      "text": "शाश्वतोऽयं",
+      "transliteration": "śāśvato'yaṃ",
+      "translation": "Ever-Existing This",
+      "hindi": "यह सनातन है",
+      "etym": "Sandhi: śāśvataḥ + ayam.",
+      "note": "-"
+    },
+    {
+      "text": "पुराणो",
+      "transliteration": "purāṇo",
+      "translation": "Primeval/Ancient",
+      "hindi": "पुरातन",
+      "etym": "Sandhi: purāṇaḥ.",
+      "note": "Although ancient, it is ever new."
+    },
+    {
+      "text": "न",
+      "transliteration": "na",
+      "translation": "Not",
+      "hindi": "नहीं",
+      "etym": "-",
+      "note": "-"
+    },
+    {
+      "text": "हन्यते",
+      "transliteration": "hanyate",
+      "translation": "Is Killed",
+      "hindi": "मारा जाता है",
+      "etym": "Root: han (to kill). Grammar: Passive Present, 3rd Person Singular.",
+      "note": "-"
+    },
+    {
+      "text": "हन्यमाने",
+      "transliteration": "hanyamāne",
+      "translation": "Being Killed",
+      "hindi": "मारे जाने पर",
+      "etym": "Root: han. Grammar: Passive Present Participle, Locative Singular.",
+      "note": "Locative Absolute construction."
+    },
+    {
+      "text": "शरीरे",
+      "transliteration": "śarīre",
+      "translation": "In the Body",
+      "hindi": "शरीर में",
+      "etym": "Noun: śarīra. Grammar: Locative Singular.",
+      "note": "The body dies, not the soul."
+    },
+    {
+      "text": "||",
+      "transliteration": "||"
+    }
+  ]
+},
 {
   "type": "Shloka",
   "verseIndex": "BG 2.47",
@@ -85,6 +266,214 @@ const versesData = [
       "hindi": "अकर्मण्यता (काम न करने) में आसक्ति हो",
       "etym": "Sandhi: saṅgaḥ (attachment) + astu (let there be) + akarmaṇi (in inaction). Visarga -> 'o' (Utva). 'u' -> 'v' (Yan). Grammar: saṅgaḥ (Nom Sg), akarmaṇi (Loc Sg).",
       "note": "Warning against laziness or renouncing duty out of fear of results."
+    },
+    {
+      "text": "||",
+      "transliteration": "||"
+    }
+  ]
+},
+{
+  "type": "Shloka",
+  "verseIndex": "BG 18.47",
+  "fullTransliteration": "Śreyān svadharmo viguṇaḥ paradharmāt svanuṣṭhitāt | Svabhāvniyataṃ karma kurvan nāpnoti kilbiṣam ||",
+  "fullTranslation": "It is better to engage in one's own occupation, even though one may perform it imperfectly, than to accept another's occupation and perform it perfectly. Duties prescribed according to one's nature are never affected by sinful reactions.",
+  "words": [
+    {
+      "text": "श्रेयान्",
+      "transliteration": "śreyān",
+      "translation": "Better",
+      "hindi": "श्रेष्ठ",
+      "etym": "Comparative Adjective.",
+      "note": "-"
+    },
+    {
+      "text": "स्वधर्मो",
+      "transliteration": "svadharmo",
+      "translation": "Own Duty",
+      "hindi": "अपना धर्म",
+      "etym": "Sandhi: svadharmaḥ.",
+      "note": "Duty aligned with one's nature (Varna)."
+    },
+    {
+      "text": "विगुणः",
+      "transliteration": "viguṇaḥ",
+      "translation": "Imperfect/Faulty",
+      "hindi": "गुणरहित (दोषयुक्त)",
+      "etym": "vi (without) + guṇa (quality).",
+      "note": "-"
+    },
+    {
+      "text": "परधर्मात्",
+      "transliteration": "paradharmāt",
+      "translation": "Than Another's Duty",
+      "hindi": "दूसरे के धर्म से",
+      "etym": "Ablative Singular (Comparison).",
+      "note": "-"
+    },
+    {
+      "text": "स्वनुष्ठितात्",
+      "transliteration": "svanuṣṭhitāt",
+      "translation": "Perfectly Done",
+      "hindi": "अच्छी तरह किए हुए",
+      "etym": "su (good) + anuṣṭhitāt (performed).",
+      "note": "-"
+    },
+    {
+      "text": "|",
+      "transliteration": "|"
+    },
+    {
+      "text": "<br>",
+      "transliteration": "<br>"
+    },
+    {
+      "text": "स्वभावनियतं",
+      "transliteration": "svabhāva-niyataṃ",
+      "translation": "Ordained by Nature",
+      "hindi": "स्वभाव से नियत",
+      "etym": "svabhāva (own nature) + niyatam (controlled/prescribed).",
+      "note": "-"
+    },
+    {
+      "text": "कर्म",
+      "transliteration": "karma",
+      "translation": "Action/Work",
+      "hindi": "कर्म",
+      "etym": "Accusative Singular.",
+      "note": "-"
+    },
+    {
+      "text": "कुर्वन्",
+      "transliteration": "kurvan",
+      "translation": "Doing/Performing",
+      "hindi": "करते हुए",
+      "etym": "Present Participle.",
+      "note": "-"
+    },
+    {
+      "text": "नाप्नोति",
+      "transliteration": "nāpnoti",
+      "translation": "Does Not Incur",
+      "hindi": "प्राप्त नहीं करता",
+      "etym": "na + āpnoti (gets).",
+      "note": "-"
+    },
+    {
+      "text": "किल्बिषम्",
+      "transliteration": "kilbiṣam",
+      "translation": "Sin",
+      "hindi": "पाप",
+      "etym": "Accusative Singular.",
+      "note": "Bad karma."
+    },
+    {
+      "text": "||",
+      "transliteration": "||"
+    }
+  ]
+},
+{
+  "type": "Shloka",
+  "verseIndex": "BG 18.66",
+  "fullTransliteration": "Sarvadharmān parityajya māmekaṃ śaraṇaṃ vraja | Ahaṃ tvā sarvapāpebhyo mokṣayiṣyāmi mā śucaḥ ||",
+  "fullTranslation": "Abandon all varieties of religion and just surrender unto Me. I shall deliver you from all sinful reactions. Do not fear.",
+  "words": [
+    {
+      "text": "सर्वधर्मान्",
+      "transliteration": "sarva-dharmān",
+      "translation": "All Duties/Religions",
+      "hindi": "सभी धर्मों को",
+      "etym": "Accusative Plural.",
+      "note": "Refers to social, ritual, and ethical obligations."
+    },
+    {
+      "text": "परित्यज्य",
+      "transliteration": "parityajya",
+      "translation": "Abandoning Completely",
+      "hindi": "परित्याग करके",
+      "etym": "pari + tyaj. Gerund.",
+      "note": "-"
+    },
+    {
+      "text": "मामेकं",
+      "transliteration": "mām-ekam",
+      "translation": "Me Alone",
+      "hindi": "मुझ एक की",
+      "etym": "mām (Me - Acc) + ekam (One/Alone).",
+      "note": "-"
+    },
+    {
+      "text": "शरणं",
+      "transliteration": "śaraṇaṃ",
+      "translation": "Shelter/Surrender",
+      "hindi": "शरण",
+      "etym": "Accusative Singular.",
+      "note": "-"
+    },
+    {
+      "text": "व्रज",
+      "transliteration": "vraja",
+      "translation": "Go/Take",
+      "hindi": "जाओ (लो)",
+      "etym": "Root: vraj. Imperative.",
+      "note": "-"
+    },
+    {
+      "text": "|",
+      "transliteration": "|"
+    },
+    {
+      "text": "<br>",
+      "transliteration": "<br>"
+    },
+    {
+      "text": "अहं",
+      "transliteration": "ahaṃ",
+      "translation": "I",
+      "hindi": "मैं",
+      "etym": "-",
+      "note": "-"
+    },
+    {
+      "text": "त्वा",
+      "transliteration": "tvā",
+      "translation": "You",
+      "hindi": "तुमको",
+      "etym": "Accusative Singular.",
+      "note": "-"
+    },
+    {
+      "text": "सर्वपापेभ्यो",
+      "transliteration": "sarva-pāpebhyo",
+      "translation": "From All Sins",
+      "hindi": "सभी पापों से",
+      "etym": "Ablative Plural.",
+      "note": "-"
+    },
+    {
+      "text": "मोक्षयिष्यामि",
+      "transliteration": "mokṣayiṣyāmi",
+      "translation": "I Shall Liberate",
+      "hindi": "मुक्त कर दूँगा",
+      "etym": "Root: mokṣ. Future Tense (Lrt), 1st Person Singular.",
+      "note": "-"
+    },
+    {
+      "text": "मा",
+      "transliteration": "mā",
+      "translation": "Do Not",
+      "hindi": "मत",
+      "etym": "Prohibitive.",
+      "note": "-"
+    },
+    {
+      "text": "शुचः",
+      "transliteration": "śucaḥ",
+      "translation": "Grieve/Worry",
+      "hindi": "शोक करो",
+      "etym": "Root: śuc. Aorist (Lung) used as Imperative.",
+      "note": "Final assurance: 'Don't worry'."
     },
     {
       "text": "||",
