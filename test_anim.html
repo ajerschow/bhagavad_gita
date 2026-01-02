@@ -350,7 +350,7 @@
     /* NEW: The magic trick. This softens the physical edge of the dot */
     filter: blur(1px);
     
-    animation: pulse 2s infinite alternate;
+    animation: pulse 3s infinite alternate;
 }
 
 /* The Smoke Particles */
@@ -365,46 +365,46 @@
     transform: translateX(-50%) scale(0.5);
     opacity: 0;
     filter: blur(5px); /* Makes it look wispy */
-    animation: rise 5s infinite linear;
+    animation: rise 15s infinite linear;
 }
 
 /* Animation Keyframes */
 @keyframes pulse {
-    0% { opacity: 0.2; box-shadow: 0 0 8px #ff5722; }
-    100% { opacity: 1; box-shadow: 0 0 16px #ff9800, 0 0 12px #ff5722; }
+    0% { opacity: 0.1; box-shadow: 0 0 8px #ff5722; }
+    100% { opacity: 0.5; box-shadow: 0 0 16px #ff9800, 0 0 12px #ff5722; }
 }
 
 @keyframes rise {
     0% {
         bottom: 120px;
         opacity: 0;
-        transform: translateX(-50%) scale(0.5);
+        transform: translateX(-100%) scale(0.5);
     }
     10% {
         opacity: 0.6;
     }
     50% {
-        transform: translateX(-80%) scale(1.5); /* Swings left */
+        transform: translateX(-160%) scale(1.5); /* Swings left */
         opacity: 0.4;
     }
     75% {
-        transform: translateX(-20%) scale(2); /* Swings right */
+        transform: translateX(-40%) scale(2); /* Swings right */
     }
     100% {
-        bottom: 400px; /* Height of smoke */
+        bottom: 800px; /* Height of smoke */
         opacity: 0;
-        transform: translateX(-50%) scale(3);
+        transform: translateX(-100%) scale(3);
     }
 }
 
 /* Delays to make the smoke look continuous */
 .vapor:nth-child(1) { animation-delay: 0s; }
-.vapor:nth-child(2) { animation-delay: 0.7s; }
-.vapor:nth-child(3) { animation-delay: 1.4s; }
-.vapor:nth-child(4) { animation-delay: 2.1s; }
-.vapor:nth-child(5) { animation-delay: 2.8s; }
-.vapor:nth-child(6) { animation-delay: 3.5s; }
-.vapor:nth-child(7) { animation-delay: 4.2s; }
+.vapor:nth-child(2) { animation-delay: 1s; }
+.vapor:nth-child(3) { animation-delay: 2s; }
+.vapor:nth-child(4) { animation-delay: 4s; }
+.vapor:nth-child(5) { animation-delay: 5s; }
+.vapor:nth-child(6) { animation-delay: 7s; }
+.vapor:nth-child(7) { animation-delay: 10s; }
 
 
 
