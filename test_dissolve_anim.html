@@ -17,6 +17,19 @@
             display: flex;
             justify-content: center;
             align-items: center;
+
+            /* --- NEW BACKGROUND SETTINGS --- */
+            /* Replace the URL below with one of the options I provided */
+            background-image: url('https://images.unsplash.com/photo-1534796636912-3b95b3ab5986?q=80&w=2000&auto=format&fit=crop');
+            
+            /* This ensures the image covers the whole screen without stretching weirdly */
+            background-size: cover; 
+            background-position: center;
+            background-repeat: no-repeat;
+
+            /* ... existing styles ... */
+            animation: drift 60s infinite alternate linear; /* Drifts in and out slowly */
+
         }
 
         /* Main Portal Container - Applies the circular shape and fade mask */
@@ -67,6 +80,14 @@
             border-radius: 50%;
             box-shadow: 0 0 4px rgba(255, 255, 255, 0.9); /* Tiny star glow */
         }
+
+        /* Add this to your <style> section */
+        @keyframes drift {
+            from { background-position: center; transform: scale(1); }
+            to { background-position: center; transform: scale(1.1); }
+        }
+
+        
     </style>
 </head>
 <body>
