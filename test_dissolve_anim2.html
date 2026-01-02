@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sanskrit Cosmic Drift</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Sanskrit&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #000000;
+            overflow: hidden;
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* --- FIXED BACKGROUND LAYER --- */
+        #bg-layer {
+            position: fixed;
+            /* Make it larger than screen so we can move it around */
+            top: -10%;
+            left: -10%;
+            width: 120%;
+            height: 120%;
+            z-index: -1; 
+            
+            /* The Image */
+            background-image: url('https://images.unsplash.com/photo-1462331940025-496dfbfc7564?q=80&w=2000&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            
+            /* Use hardware acceleration for smoothness */
+            will-change: transform; 
+
+            /* The Animation: Faster (25s) and linear for constant flow */
+            animation: cosmic-drift 25s infinite alternate ease-in-out;
+        }
+
+        /* Stronger drifting animation */
+        @keyframes cosmic-drift {
+            0% {
+                transform: scale(1.0) translate(0, 0);
+            }
+            100% {
+                /* Zoom in AND move sideways/up */
+                transform: scale(1.3) translate(-2%, -2%); 
+            }
+        }
+
+        /* --- THE PORTAL (Stars & Words) --- */
+        #portal-container {
+            position: relative;
+            width: 85vmin; 
+            height: 85vmin;
+            border-radius: 50%;
+            /* Masking to fade edges */
+            mask-image: radial-gradient(circle, black 40%, transparent 70%);
+            -webkit-mask-image: radial-gradient(circle, black 40%, transparent 70%);
+            perspective: 1000px;
+            z-index: 10; 
+        }
+
+        .layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            transform-style: preserve-3d;
+        }
+        #star-layer { z-index: 1; }
+        #word-layer { z-index: 2; }
+
+        .anim-element {
+            position: absolute;
+            will-change: transform, opacity;
+            opacity: 0;
+            transform-origin: center center;
+        }
+
+        .sanskrit-word {
+            font-family: 'Tiro Devanagari Sanskrit', serif;
+            color: #f0f0f0; 
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+            white-space: nowrap;
+        }
+
+        .star {
+            background-color: #fff;
+            border-radius: 50%;
+            box-shadow: 0 0 4px rgba(255, 255, 255, 0.9);
+        }
+    </style>
+</head>
+<body>
+
+<div id="bg-layer"></div>
+
+<div id="portal-container">
+    <div id="star-layer" class="layer"></div>
+    <div id="word-layer" class="layer"></div>
+</div>
+
+<script>
+    const words = ["ॐ", "जीवन", "मृत्यु", "काल", "भय", "आत्मन्", "आशा"];
+    const wordLayer = document.getElementById('word-layer');
+    const starLayer = document.getElementById('star-layer');
+    const container = document.getElementById('portal-container');
+
+    function getCenter() {
+        const size = container.clientWidth;
+        return { x: size / 2, y: size / 2, size: size };
+    }
+
+    function createWord() {
+        const word = document.createElement('div');
+        word.classList.add('anim-element', 'sanskrit-word');
+        word.innerText = words[Math.floor(Math.random() * words.length)];
+
+        const fontSize = Math.random() * 20 + 30; 
+        word.style.fontSize = `${fontSize}px`;
+        
+        const startScale = Math.random() * 0.2 + 0.05; 
+        const endScale = Math.random() * 3.0 + 4.0;   
+
+        const c = getCenter();
+        const spawnAngle = Math.random() * Math.PI * 2;
+        const spawnRadius = Math.random() * 30; 
+        const startX = c.x + Math.cos(spawnAngle) * spawnRadius;
+        const startY = c.y + Math.sin(spawnAngle) * spawnRadius;
+
+        const moveAngle = Math.random() * Math.PI * 2;
+        const moveDistance = c.size * 0.7; 
+        const endX = Math.cos(moveAngle) * moveDistance;
+        const endY = Math.sin(moveAngle) * moveDistance;
+
+        const rotation = (Math.random() - 0.5) * 30; 
+
+        const duration = Math.random() * 8000 + 12000; 
+
+        word.style.left = `${startX}px`;
+        word.style.top = `${startY}px`;
+        
+        word.style.transition = `transform ${duration}ms cubic-bezier(0.7, 0, 0.84, 0), opacity 3000ms ease-in`;
+        word.style.transform = `translate(-50%, -50%) scale(${startScale}) rotate(0deg)`;
+
+        wordLayer.appendChild(word);
+        void word.offsetWidth; 
+
+        requestAnimationFrame(() => {
+            word.style.opacity = 1;
+            word.style.transform = `
+                translate3d(calc(-50% + ${endX}px), calc(-50% + ${endY}px), 0) 
+                rotate(${rotation}deg) 
+                scale(${endScale})
+            `;
+        });
+
+        setTimeout(() => { word.remove(); }, duration);
+    }
+
+    function createStar() {
+        const star = document.createElement('div');
+        star.classList.add('anim-element', 'star');
+
+        const size = Math.random() * 2 + 1;
+        star.style.width = `${size}px`;
+        star.style.height = `${size}px`;
+
+        const startScale = 0.1;
+        const endScale = Math.random() * 2.0 + 1.0;
+
+        const c = getCenter();
+        const spawnAngle = Math.random() * Math.PI * 2;
+        const spawnRadius = Math.random() * 10; 
+        const startX = c.x + Math.cos(spawnAngle) * spawnRadius;
+        const startY = c.y + Math.sin(spawnAngle) * spawnRadius;
+
+        const moveAngle = Math.random() * Math.PI * 2;
+        const moveDistance = c.size * 0.8; 
+        const endX = Math.cos(moveAngle) * moveDistance;
+        const endY = Math.sin(moveAngle) * moveDistance;
+
+        const duration = Math.random() * 20000 + 15000; 
+
+        star.style.left = `${startX}px`;
+        star.style.top = `${startY}px`;
+        
+        star.style.transition = `transform ${duration}ms cubic-bezier(0.7, 0, 0.84, 0), opacity 1000ms ease-in`;
+        star.style.transform = `translate(-50%, -50%) scale(${startScale})`;
+
+        starLayer.appendChild(star);
+        void star.offsetWidth; 
+
+        requestAnimationFrame(() => {
+            star.style.opacity = 0.8; 
+            star.style.transform = `
+                translate3d(calc(-50% + ${endX}px), calc(-50% + ${endY}px), 0) 
+                scale(${endScale})
+            `;
+        });
+
+        setTimeout(() => { star.remove(); }, duration);
+    }
+
+    setInterval(createWord, 1200);
+    setInterval(createStar, 300);
+    for(let i = 0; i < 50; i++) { createStar(); }
+
+</script>
+
+</body>
+</html>
