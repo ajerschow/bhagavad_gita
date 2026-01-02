@@ -1,6 +1,66 @@
 // decide whether should make it into json format (could not hurt)
 // read through 10.21 - 10.38 for among the ... I am 
+
+// add uvaacha
+// 2-26
+// 2-38
+// 2-40: no harm if not achieved
+// 2-42: those only interested in rituals
+// 2-43: more rituals, less knowledge
+// 2-48: equanimity in success and failure
+// 2-49: wisdom from renunciation of fruit
+// 2-50: steady mind from knowledge
+// 2-51: wise not affected by good/bad, complete liberation
+// 2-61: senses as enemies
+// 2-69: wise not disturbed by desires
+// Om sri paramatmane namah
+
+
 const versesData = [
+{
+  "type": "Invocation (Mangalacharan)",
+  "verseIndex": "Common Invocation",
+  "fullTransliteration": "Oṃ Śrī Paramātmane Namaḥ ||",
+  "fullTranslation": "Om, Salutations to the Glorious Supreme Self.",
+  "words": [
+    {
+      "text": "ॐ",
+      "transliteration": "oṃ",
+      "translation": "Om",
+      "hindi": "ॐ",
+      "etym": "The Pranava (A-U-M).",
+      "note": "The primordial sound representing the Absolute."
+    },
+    {
+      "text": "श्री",
+      "transliteration": "śrī",
+      "translation": "Glorious / Holy",
+      "hindi": "श्री (आदरणीय)",
+      "etym": "Noun/Honorific prefix.",
+      "note": "Denotes auspiciousness, radiance, or reverence."
+    },
+    {
+      "text": "परमात्मने",
+      "transliteration": "paramātmane",
+      "translation": "To the Supreme Self",
+      "hindi": "परमात्मा को",
+      "etym": "parama (supreme) + ātman (self). Grammar: Dative Singular.",
+      "note": "The dative case ending ('-e') is used because 'Namaha' requires the object of salutation to be in the dative ('to' someone)."
+    },
+    {
+      "text": "नमः",
+      "transliteration": "namaḥ",
+      "translation": "Salutations / Homage",
+      "hindi": "नमन / नमस्कार",
+      "etym": "Root: nam (to bow/bend).",
+      "note": "Implies surrender or bowing down."
+    },
+    {
+      "text": "||",
+      "transliteration": "||"
+    }
+  ]
+},
 {
   "type": "Shloka",
   "verseIndex": "BG 2.20",
