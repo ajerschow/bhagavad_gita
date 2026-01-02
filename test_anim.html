@@ -365,7 +365,7 @@
     transform: translateX(-50%) scale(0.5);
     opacity: 0;
     filter: blur(5px); /* Makes it look wispy */
-    animation: rise 15s infinite linear;
+    animation: rise 20s infinite linear;
 }
 
 /* Animation Keyframes */
@@ -378,33 +378,66 @@
     0% {
         bottom: 120px;
         opacity: 0;
-        transform: translateX(-100%) scale(0.5);
+        /* Start perfectly centered */
+        transform: translateX(-50%) scale(0.5);
     }
-    10% {
+    20% {
         opacity: 0.6;
     }
     50% {
-        transform: translateX(-160%) scale(1.5); /* Swings left */
-        opacity: 0.4;
-    }
-    75% {
-        transform: translateX(-40%) scale(2); /* Swings right */
+        /* Move halfway to the custom sway point */
+        opacity: 0.5;
+        transform: translateX(calc(-50% + (var(--sway) / 2))) scale(1.5);
     }
     100% {
-        bottom: 800px; /* Height of smoke */
+        bottom: 800px; /* Adjust height as needed */
         opacity: 0;
-        transform: translateX(-100%) scale(3);
+        /* End at the specific sway point defined for this particle */
+        transform: translateX(calc(-50% + var(--sway))) scale(4);
     }
 }
 
-/* Delays to make the smoke look continuous */
-.vapor:nth-child(1) { animation-delay: 0s; }
-.vapor:nth-child(2) { animation-delay: 1s; }
-.vapor:nth-child(3) { animation-delay: 2s; }
-.vapor:nth-child(4) { animation-delay: 4s; }
-.vapor:nth-child(5) { animation-delay: 5s; }
-.vapor:nth-child(6) { animation-delay: 7s; }
-.vapor:nth-child(7) { animation-delay: 10s; }
+/* Particle 1: Goes Left slowly */
+.vapor:nth-child(1) { 
+    --sway: -80px; 
+    animation-duration: 24s; 
+    animation-delay: 0s; 
+}
+
+/* Particle 2: Goes Right fast */
+.vapor:nth-child(2) { 
+    --sway: 60px; 
+    animation-duration: 16s; 
+    animation-delay: 2s; 
+}
+
+/* Particle 3: Goes slightly Left, very slow */
+.vapor:nth-child(3) { 
+    --sway: -30px; 
+    animation-duration: 30s; 
+    animation-delay: 4s; 
+}
+
+/* Particle 4: Goes far Right */
+.vapor:nth-child(4) { 
+    --sway: 100px; 
+    animation-duration: 20s; 
+    animation-delay: 6s; 
+}
+
+/* Particle 5: Goes almost straight up (tiny sway) */
+.vapor:nth-child(5) { 
+    --sway: -10px; 
+    animation-duration: 22s; 
+    animation-delay: 8s; 
+}
+
+/* Particle 6: Goes far Left */
+.vapor:nth-child(6) { 
+    --sway: -120px; 
+    animation-duration: 26s; 
+    animation-delay: 10s; 
+}
 
 
 

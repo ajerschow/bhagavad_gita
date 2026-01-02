@@ -62,6 +62,30 @@ const versesData = [
   ]
 },
 {
+  "type": "Title / Invocation",
+  "verseIndex": "Title",
+  "fullTransliteration": "Atha Śrīmadbhagavadgītā",
+  "fullTranslation": "Now begins the glorious Bhagavad Gita.",
+  "words": [
+    {
+      "text": "अथ",
+      "transliteration": "atha",
+      "translation": "Now / Here Begins",
+      "hindi": "अब (आरंभ)",
+      "etym": "Indeclinable Particle.",
+      "note": "An auspicious word (Mangala) indicating the start of a sacred text."
+    },
+    {
+      "text": "श्रीमद्भगवद्गीता",
+      "transliteration": "śrīmadbhagavadgītā",
+      "translation": "The Glorious Song of God",
+      "hindi": "श्रीमद्भगवद्गीता",
+      "etym": "Compound: śrīmat (glorious) + bhagavat (divine/God) + gītā (song).",
+      "note": "The full title of the scripture."
+    }
+  ]
+},
+{
   "type": "Shloka",
   "verseIndex": "BG 2.20",
   "fullTransliteration": "Na jāyate mriyate vā kadācin nāyaṃ bhūtvā bhavitā vā na bhūyaḥ | Ajo nityaḥ śāśvato'yaṃ purāṇo na hanyate hanyamāne śarīre ||",
