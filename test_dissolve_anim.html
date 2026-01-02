@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sanskrit Starfield Portal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Sanskrit&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #000000; /* Pure black for star contrast */
+            overflow: hidden;
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Main Portal Container - Applies the circular shape and fade mask */
+        #portal-container {
+            position: relative;
+            width: 85vmin; 
+            height: 85vmin;
+            border-radius: 50%;
+            /* The mask fades everything out as it reaches the edge */
+            mask-image: radial-gradient(circle, black 40%, transparent 70%);
+            -webkit-mask-image: radial-gradient(circle, black 40%, transparent 70%);
+            /* Ensure 3D transforms work nicely */
+            perspective: 1000px;
+        }
+
+        /* Layers to ensure words are always on top of stars */
+        .layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            transform-style: preserve-3d;
+        }
+        #star-layer { z-index: 1; }
+        #word-layer { z-index: 2; }
+
+        /* Shared styles for animated elements */
+        .anim-element {
+            position: absolute;
+            will-change: transform, opacity;
+            opacity: 0; /* Start invisible */
+            transform-origin: center center;
+        }
+
+        /* Word Specific Styles */
+        .sanskrit-word {
+            font-family: 'Tiro Devanagari Sanskrit', serif;
+            color: #f0f0f0; 
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.6); /* Stronger glow */
+            white-space: nowrap;
+        }
+
+        /* Star Specific Styles */
+        .star {
+            background-color: #fff;
+            border-radius: 50%;
+            box-shadow: 0 0 4px rgba(255, 255, 255, 0.9); /* Tiny star glow */
+        }
+    </style>
+</head>
+<body>
+
+<div id="portal-container">
+    <div id="star-layer" class="layer"></div>
+    <div id="word-layer" class="layer"></div>
+</div>
+
+<script>
+    const words = ["ॐ", "जीवन", "मृत्यु", "काल", "भय", "आत्मन्", "आशा"];
+    const wordLayer = document.getElementById('word-layer');
+    const starLayer = document.getElementById('star-layer');
+    const container = document.getElementById('portal-container');
+
+    // Helper function to get center coordinates
+    function getCenter() {
+        const size = container.clientWidth;
+        return { x: size / 2, y: size / 2, size: size };
+    }
+
+    // --- CREATE WORD FUNCTION ---
+    function createWord() {
+        const word = document.createElement('div');
+        word.classList.add('anim-element', 'sanskrit-word');
+        word.innerText = words[Math.floor(Math.random() * words.length)];
+
+        // Base Font Size (slightly larger now for better zooming look)
+        const fontSize = Math.random() * 20 + 30; 
+        word.style.fontSize = `${fontSize}px`;
+        
+        // *** CHANGE: EXTREME ZOOM SCALES ***
+        // Start very tiny, end very large
+        const startScale = Math.random() * 0.2 + 0.05; // Starts almost invisible
+        const endScale = Math.random() * 3.0 + 4.0;   // Ends huge
+
+        // Positioning & Trajectory
+        const c = getCenter();
+        // Spawn in a tight cluster in the center
+        const spawnAngle = Math.random() * Math.PI * 2;
+        const spawnRadius = Math.random() * 30; 
+        const startX = c.x + Math.cos(spawnAngle) * spawnRadius;
+        const startY = c.y + Math.sin(spawnAngle) * spawnRadius;
+
+        // Destination: Outwards towards edge
+        const moveAngle = Math.random() * Math.PI * 2;
+        // Move far enough to ensure they hit the fade mask completely
+        const moveDistance = c.size * 0.7; 
+        const endX = Math.cos(moveAngle) * moveDistance;
+        const endY = Math.sin(moveAngle) * moveDistance;
+
+        const rotation = (Math.random() - 0.5) * 60; 
+
+        // *** CHANGE: SLOWER DURATION ***
+        // 12 to 20 seconds travel time
+        const duration = Math.random() * 8000 + 14000; 
+
+        // Apply Initial State
+        word.style.left = `${startX}px`;
+        word.style.top = `${startY}px`;
+        // We use a long ease-in for opacity so they slowly emerge from the dark center
+        word.style.transition = `transform ${duration}ms linear, opacity 3000ms ease-in`;
+        word.style.transform = `translate(-50%, -50%) scale(${startScale}) rotate(0deg)`;
+
+        wordLayer.appendChild(word);
+
+        // Force Reflow
+        void word.offsetWidth; 
+
+        // Animate
+        requestAnimationFrame(() => {
+            word.style.opacity = 1;
+            // Using translate3d activates hardware acceleration for smoother large elements
+            word.style.transform = `
+                translate3d(calc(-50% + ${endX}px), calc(-50% + ${endY}px), 0) 
+                rotate(${rotation}deg) 
+                scale(${endScale})
+            `;
+        });
+
+        // Cleanup
+        setTimeout(() => { word.remove(); }, duration);
+    }
+
+    // --- CREATE STAR FUNCTION ---
+    function createStar() {
+        const star = document.createElement('div');
+        star.classList.add('anim-element', 'star');
+
+        // Random star size (tiny dots)
+        const size = Math.random() * 2 + 1;
+        star.style.width = `${size}px`;
+        star.style.height = `${size}px`;
+
+        // Star Scaling
+        const startScale = 0.1;
+        const endScale = Math.random() * 2.0 + 1.0;
+
+        // Positioning & Trajectory (Similar center-out logic)
+        const c = getCenter();
+        const spawnAngle = Math.random() * Math.PI * 2;
+        // Stars start even closer to absolute center
+        const spawnRadius = Math.random() * 10; 
+        const startX = c.x + Math.cos(spawnAngle) * spawnRadius;
+        const startY = c.y + Math.sin(spawnAngle) * spawnRadius;
+
+        const moveAngle = Math.random() * Math.PI * 2;
+        const moveDistance = c.size * 0.8; 
+        const endX = Math.cos(moveAngle) * moveDistance;
+        const endY = Math.sin(moveAngle) * moveDistance;
+
+        // Star Duration (Parallax Effect)
+        // Some stars move fast (2s), some slow (15s) to create depth
+        const duration = Math.random() * 20000 + 15000; 
+
+        // Apply Initial State
+        star.style.left = `${startX}px`;
+        star.style.top = `${startY}px`;
+        star.style.transition = `transform ${duration}ms linear, opacity 1000ms ease-in`;
+        star.style.transform = `translate(-50%, -50%) scale(${startScale})`;
+
+        starLayer.appendChild(star);
+        void star.offsetWidth; // Force Reflow
+
+        // Animate
+        requestAnimationFrame(() => {
+            star.style.opacity = 0.8; // Stars aren't perfectly bright
+            // Stars don't rotate, they just move and scale
+            star.style.transform = `
+                translate3d(calc(-50% + ${endX}px), calc(-50% + ${endY}px), 0) 
+                scale(${endScale})
+            `;
+        });
+
+        // Cleanup
+        setTimeout(() => { star.remove(); }, duration);
+    }
+
+    // --- LOOPS ---
+    // Spawn words slowly (every 1.2 seconds)
+    setInterval(createWord, 1200);
+
+    // Spawn stars quickly to fill the space (every 100ms)
+    setInterval(createStar, 100);
+
+    // Initial burst of stars to fill screen faster on load
+    for(let i = 0; i < 50; i++) { createStar(); }
+
+</script>
+
+</body>
+</html>
